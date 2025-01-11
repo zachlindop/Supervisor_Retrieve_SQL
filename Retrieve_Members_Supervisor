@@ -1,0 +1,9 @@
+SELECT a.SecurityGroup, b.Account, b.UserName, b.UserSupervisor
+FROM SecurityGroupDirectory a
+LEFT JOIN AccessByAPP b
+ON a.SecurityGroup = b.SecurityGroup
+WHERE a.SecurityGroup = ‘’
+--enter security group name above
+AND b.Account NOT LIKE ‘Priority%’
+GROUP BY a.SecurityGroup, b.Account, b.UserName, b.UserSupervisor
+ORDER BY b.Account ASC
